@@ -19,7 +19,7 @@ export default defineConfig({
     observability: {
       enabled: true,
       headSamplingRate: 1,
-      redactQueryString: false,
+      redactQueryString: true,
       logs: {
         enabled: true,
         headSamplingRate: 1,
