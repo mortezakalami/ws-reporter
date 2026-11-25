@@ -1,0 +1,45 @@
+{
+  "name": "ws-reporter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Serverless Windscribe traffic and quota monitor running on Cloudflare Workers with a Telegram management bot, KV persistence, AES-GCM password encryption, and TOTP 2FA support.",
+  "license": "MIT",
+  "author": "Morteza Kalami <74761575+mortezakalami@users.noreply.github.com>",
+  "homepage": "https://github.com/mortezakalami/ws-reporter#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mortezakalami/ws-reporter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mortezakalami/ws-reporter/issues"
+  },
+  "keywords": [
+    "windscribe",
+    "cloudflare-workers",
+    "telegram-bot",
+    "traffic-monitor",
+    "bandwidth-tracker",
+    "quota-monitor",
+    "workers-kv",
+    "serverless",
+    "cron-triggers",
+    "totp",
+    "2fa",
+    "aes-gcm",
+    "automation",
+    "cloudflare"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "cf dev",
+    "build": "cf build",
+    "deploy": "cf deploy",
+    "deploy:dry": "cf deploy --dry-run"
+  },
+  "devDependencies": {
+    "@cloudflare/config": "^1.0.0-rc.4",
+    "@cloudflare/vite-plugin": "^2.0.0-rc.5",
+    "cf": "^1.0.0-rc.6",
+    "vite": "^8.3.8"
+  }
+}
