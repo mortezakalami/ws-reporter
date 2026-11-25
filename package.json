@@ -33,6 +33,7 @@
   "scripts": {
     "dev": "cf dev",
     "build": "cf build",
+    "test": "node --test",
     "deploy": "cf deploy",
     "deploy:dry": "cf deploy --dry-run"
   },
