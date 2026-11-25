@@ -63,8 +63,8 @@ All commands are restricted to user IDs listed in `ADMIN_IDS`.
 | Method & Path | Purpose | Auth |
 | --- | --- | --- |
 | `POST /tg/webhook` | Receives Telegram bot updates | `x-telegram-bot-api-secret-token` header matching `WEBHOOK_SECRET` |
-| `GET /setup?key=...` | Registers the Telegram webhook URL automatically | `key` query param matching `WEBHOOK_SECRET` |
-| `GET /run?key=...` | Triggers one cycle step manually | `key` query param matching `WEBHOOK_SECRET` |
+| `GET /setup` | Registers the Telegram webhook URL automatically | `x-webhook-secret` header (or `key` query param) matching `WEBHOOK_SECRET` |
+| `GET /run` | Triggers one cycle step manually | `x-webhook-secret` header (or `key` query param) matching `WEBHOOK_SECRET` |
 | `GET /` | Health check response | Public |
 
 ## Prerequisites
@@ -142,10 +142,23 @@ All commands are restricted to user IDs listed in `ADMIN_IDS`.
 ```text
 ws-reporter/
 ├── src/
+│   ├── bot.js              # Telegram command handlers
+│   ├── config.js           # Constants, KV keys, and request headers
+│   ├── crypto.js           # AES-256-GCM encryption and RFC 6238 TOTP
+│   ├── cycle.js            # Queue rotation, lock, and cycle completion
+│   ├── limiter.js          # Rate limiter, cooldown state, and fetch wrapper
+│   ├── report.js           # Report block formatting and chunking
+│   ├── storage.js          # Workers KV persistence and cycle lock helpers
+│   ├── telegram.js         # Telegram Bot API client with retry bounds
+│   ├── utils.js            # Formatters, date helpers, and constant-time compare
+│   ├── windscribe.js       # Windscribe login, session cache, and normalization
 │   └── worker.js           # Worker entrypoint (fetch + scheduled handlers)
+├── test/
+│   └── worker.test.js      # Node unit tests (node --test)
 ├── cloudflare.config.ts    # Cloudflare Workers config (KV, cron, vars, secrets)
 ├── vite.config.ts          # Vite + @cloudflare/vite-plugin integration
 ├── .env.example            # Environment variable template
+├── llms.txt                # AI discovery summary
 ├── README.md               # English documentation
 ├── README.fa.md            # Persian documentation
 └── LICENSE                 # MIT license

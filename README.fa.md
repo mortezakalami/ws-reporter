@@ -64,8 +64,8 @@
 | مسیر | کاربرد | احراز هویت |
 | --- | --- | --- |
 | `POST /tg/webhook` | دریافت آپدیت‌های تلگرام | هدر `x-telegram-bot-api-secret-token` برابر با `WEBHOOK_SECRET` |
-| `GET /setup?key=...` | ثبت خودکار آدرس Webhook در تلگرام | پارامتر `key` برابر با `WEBHOOK_SECRET` |
-| `GET /run?key=...` | اجرای دستی یک گام چرخه | پارامتر `key` برابر با `WEBHOOK_SECRET` |
+| `GET /setup` | ثبت خودکار آدرس Webhook در تلگرام | هدر `x-webhook-secret` (یا پارامتر `key`) برابر با `WEBHOOK_SECRET` |
+| `GET /run` | اجرای دستی یک گام چرخه | هدر `x-webhook-secret` (یا پارامتر `key`) برابر با `WEBHOOK_SECRET` |
 | `GET /` | بررسی سلامت ورکر | عمومی |
 
 ## راهنمای نصب و راه‌اندازی
@@ -106,11 +106,12 @@ cp .env.example .env
 | `ENC_KEY` | پیشنهادی (Secret) | کلید رمزنگاری پسوردها در KV |
 | `WEBHOOK_SECRET` | الزامی (Secret) | رشتهٔ امنیتی برای محافظت از وب‌هوک و مسیرهای کنترلی |
 
-۵. برای تست محلی یا گرفتن بیلد:
+۵. برای تست محلی، اجرای تست‌های واحد یا گرفتن بیلد:
 
 </div>
 
 ```bash
+npm test
 npm run dev
 npm run build
 ```
